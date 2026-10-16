@@ -112,14 +112,18 @@ export function isTechnicalOrHrOpsContextSafe(questionText: string): boolean {
 
   // Maternity / Childcare leave data administration check (S03)
   const isHrLeaveDataAccess =
-    /(?:출산휴가|육아휴직|출산·육아|휴직코드).*(?:데이터|자료|접근권한|접근 권한|시스템|마스킹|보안|권한|관리했던 방법|관리한 사례)/.test(
+    (/(?:출산휴가|육아휴직|출산·육아|휴직코드).*(?:데이터|자료|접근권한|접근 권한|시스템|마스킹|보안|권한|관리했던 방법|관리한 사례)/.test(
       norm
-    ) && !/(?:본인|지원자|앞으로|계획이 있|낳을 생각|언제쯤)/.test(norm);
+    ) ||
+      /(?:maternity leave|parental leave|childcare leave|leave code).*(?:access permission|permission|data|system|masking|security|record|manage)/i.test(
+        norm
+      )) &&
+    !/(?:본인|지원자|앞으로|계획이 있|낳을 생각|언제쯤|do you plan|are you planning|your own)/.test(norm);
 
   // Technical database/dataset key value check (S05)
   const isDatabaseKeyValue =
-    /(?:키 값|기준 키|기본키|외래키|key 값|primary key|foreign key)/.test(norm) &&
-    !/(?:몸무게|체중|외모|신체|키와|키랑)/.test(norm);
+    /(?:키 값|기준 키|기본키|외래키|key 값|primary key|foreign key|key value|duplicate key)/i.test(norm) &&
+    !/(?:몸무게|체중|외모|신체|키와|키랑|height and weight)/.test(norm);
 
   return isHrLeaveDataAccess || isDatabaseKeyValue;
 }

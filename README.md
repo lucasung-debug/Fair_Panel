@@ -2,7 +2,8 @@
 
 > **Google DeepMind AI Hackathon — Build with Gemini 4 Argon (Seoul, Oct 2026)**
 > **Primary Reasoning Engine:** `gemini-4-argon` | **Companion Models:** `gemini-3.8-flash` & `gemini-3.5-flash-lite`
-> **Deployment Target:** Google Cloud Run | **Human-in-the-Loop Governance Log:** [`HITL_DECISION_LOG.md`](./HITL_DECISION_LOG.md) | **Agent Harness:** [`GEMINI.md`](./GEMINI.md)
+> **Live Google Cloud Run URL:** [https://fairpanel-401108022555.asia-northeast3.run.app](https://fairpanel-401108022555.asia-northeast3.run.app) (`Project: h2gdm-hack26icn-2609`, `Region: asia-northeast3`)
+> **Human-in-the-Loop Governance Log:** [`HITL_DECISION_LOG.md`](./HITL_DECISION_LOG.md) | **Agent Harness:** [`GEMINI.md`](./GEMINI.md)
 
 ---
 

@@ -270,6 +270,11 @@ export const RISK_CATEGORIES: RiskCategoryConfig[] = [
       '원래 성격이 조용한',
       '취미가 뭐',
       'how much do you drink',
+      'usually drink',
+      'drinking capacity',
+      'drink at team dinners',
+      'spend your weekends with',
+      'who do you usually spend your weekends',
     ],
     reasonTemplate:
       'Inquiring into drinking habits, weekend companions, or personal personality stereotypes intrudes on job-irrelevant private lifestyle.',
