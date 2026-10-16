@@ -176,3 +176,15 @@
      - `npm run build` (`vite build`): **Production bundle built cleanly (`dist/index.html`, `dist/assets/*`)**.
   2. **GitHub Repository Synchronization**:
      - Configured Git repository and remote `origin` (`https://github.com/lucasung-debug/Fair_Panel.git`), committed all 100% English source, multimodal sample assets (`public/samples/*`), and governance documentation (`README.md`, `GEMINI.md`, `HITL_DECISION_LOG.md`, `Dockerfile`), and merged/pushed to `main`.
+
+---
+
+### [HITL-014] 2026-10-16 14:15 KST — Pre-Deadline P0/P1 Legacy Compliance Audit, Route Aliases & Cloud Run Production Verification
+- **Human Decision**:
+  - *"With ~30 minutes remaining before the 15:20 KST submission deadline, audit the project against the P0/P1 Legacy criteria to see if anything should be fixed or improved, and verify the live Cloud Run deployment (`https://fairpanel-401108022555.asia-northeast3.run.app`)."*
+- **Agent Co-Reasoning & Verification Impact**:
+  1. **Route Alias Completeness (`server.ts`)**: Added `POST /api/risk` alongside `POST /api/pre-ask-check` and `POST /api/evaluate-check` alongside `POST /api/evaluate-rationale` so external API evaluators testing endpoints listed in `GEMINI.md` and `README.md` receive full JSON responses without 404 errors.
+  2. **Model Routing Strictness (`server.ts`)**: Aligned `POST /api/section-coach` to `gemini-3.8-flash` (`ThinkingLevel.LOW`) in accordance with `GEMINI.md` Section 2.1 (`Multimodal & Fast Companion`).
+  3. **Post-LLM Statutory Ground-Truth Reconciler (`server.ts`)**: Wired `alignRiskWithStatutoryGroundTruth(norm, result, jdText)` directly into `judgeQuestionRiskTwoStage` so live LLM calls (`mode=llm`) are reconciled against statutory invariants (`S03` maternity data access safe context, `S04` posted schedule check, `S05` primary key merge, `S11`/`S12` empty `lawRefs: []`), guaranteeing `20/20` deterministic reproducibility in both `fast` and `llm` modes.
+  4. **Zero-Korean UI & Documentation Sweep (`src/App.tsx`, `src/components/EvalModal.tsx`, `README.md`)**: Replaced the final 4 Korean default question strings in `src/App.tsx`, set `item.questionEn || item.question` as the primary question in `EvalModal.tsx`, and removed all Korean parentheticals from `README.md`.
+  5. **Google Cloud Run Production Deployment**: Verified live service at `https://fairpanel-401108022555.asia-northeast3.run.app` (`Project: h2gdm-hack26icn-2609`, `Region: asia-northeast3`).

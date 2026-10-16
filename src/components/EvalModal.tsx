@@ -165,8 +165,7 @@ export const EvalModal: React.FC<EvalModalProps> = ({
                         {item.code || `#${item.id}`}
                       </td>
                       <td className="py-2.5 px-3">
-                        <div className="font-medium text-slate-900">{item.question}</div>
-                        <div className="text-slate-500 text-[11px] mt-0.5">{item.questionEn}</div>
+                        <div className="font-medium text-slate-900">{item.questionEn || item.question}</div>
                         {item.candidateBoundaryGuide && (
                           <div className="mt-1 text-[11px] text-indigo-900 bg-indigo-50/70 border border-indigo-100 rounded px-2 py-1">
                             <span className="font-semibold">Candidate Guide: </span>

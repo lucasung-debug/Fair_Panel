@@ -83,7 +83,7 @@ function getInitialPlannedQuestions(preset: ApplicantPreset): PlannedQuestionIte
       id: 'plan_s04_mandatory',
       category: 'mandatory_hr',
       competencyName: 'HR Mandatory Schedule Verification (S04)',
-      text: '공고에 안내된 분기 마감 집중근무 기간(주 52시간 내)에 정상 참여가 가능한지 확인 부탁드립니다.',
+      text: 'Please confirm if you are available to participate in the quarterly close intensive period (within 52-hour weekly limit) scheduled in the job posting.',
       textEn:
         'Please confirm if you are available to participate in the quarterly close intensive period (within 52-hour weekly limit) scheduled in the job posting.',
       rubric: {
@@ -150,9 +150,9 @@ function getInitialPlannedQuestions(preset: ApplicantPreset): PlannedQuestionIte
     id: 'plan_s03_safe_tech',
     category: 'behavioral',
     competencyName: 'C4: HR Data Security & Access Governance (S03)',
-    text: '출산휴가·육아휴직 데이터의 접근권한을 관리했던 방법을 말씀해 주세요.',
+    text: 'Please describe how you managed access permissions for maternity and parental leave HR data.',
     textEn:
-      'Please describe how you managed access permissions for maternity and parental leave data.',
+      'Please describe how you managed access permissions for maternity and parental leave HR data.',
     rubric: {
       score1: 'Confuses personal leave rights with technical data access permissions.',
       score3: 'Applies standard role-based access control (RBAC) rules.',
@@ -221,11 +221,11 @@ export default function App() {
 
   // Step 1 Pre-Ask Risk Gate State
   const [draftQuestion, setDraftQuestion] = useState<string>(
-    '출산휴가·육아휴직 데이터의 접근권한을 관리했던 방법을 말씀해 주세요.'
+    'Please describe how you managed access permissions for maternity and parental leave HR data.'
   );
   const [preAskRisk, setPreAskRisk] = useState<RiskResult | null>(() =>
     evaluateRiskDeterministic(
-      '출산휴가·육아휴직 데이터의 접근권한을 관리했던 방법을 말씀해 주세요.',
+      'Please describe how you managed access permissions for maternity and parental leave HR data.',
       selectedPreset.jdText
     )
   );

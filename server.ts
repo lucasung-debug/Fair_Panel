@@ -31,6 +31,7 @@ import {
   KIT_VALIDATION_DEFECT_CASES,
 } from './src/data/demoTestset.ts';
 import {
+  alignRiskWithStatutoryGroundTruth,
   applySecondOpinionDowngrade,
   buildCandidateGuideDeterministic,
   checkQuestionFormat,
@@ -357,7 +358,7 @@ Review the interviewer question and Stage 1 findings. Evaluate statutory intent 
         : stage1Result.candidateGuide ||
           buildCandidateGuideDeterministic(norm, stage2Level, stage1Result.category);
 
-      return {
+      const stage2Result: RiskResult = {
         level: stage2Level,
         category: parsed2.category || stage1Result.category,
         categoryLabel: parsed2.categoryLabel || stage1Result.categoryLabel,
@@ -376,9 +377,10 @@ Review the interviewer question and Stage 1 findings. Evaluate statutory intent 
         qualityReason: stage1Result.qualityReason,
         candidateGuide,
       };
+      return alignRiskWithStatutoryGroundTruth(norm, jdText, stage2Result);
     }
 
-    return stage1Result;
+    return alignRiskWithStatutoryGroundTruth(norm, jdText, stage1Result);
   } catch {
     return deterministic;
   }
@@ -512,7 +514,7 @@ const handleBenchmark = async (req: express.Request, res: express.Response) => {
 app.get('/api/benchmark', handleBenchmark);
 app.get('/api/eval', handleBenchmark);
 
-app.post('/api/pre-ask-check', async (req, res) => {
+app.post(['/api/pre-ask-check', '/api/risk'], async (req, res) => {
   try {
     const { question, jdText } = req.body as {
       question?: string;
@@ -530,6 +532,7 @@ app.post('/api/pre-ask-check', async (req, res) => {
     const formatCheck = checkQuestionFormat(question.trim());
 
     res.json({
+      ...risk,
       question: question.trim(),
       risk,
       formatCheck,
@@ -1443,10 +1446,10 @@ ${sectionContent}
   - rubric: observable behaviors for score1, score3, score5`;
 
         const resp = await ai.models.generateContent({
-          model: 'gemini-4-argon',
+          model: 'gemini-3.8-flash',
           contents: prompt,
           config: {
-            thinkingConfig: { thinkingLevel: ThinkingLevel.MEDIUM },
+            thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
             responseMimeType: 'application/json',
             responseSchema: {
               type: Type.OBJECT,
@@ -1490,7 +1493,7 @@ ${sectionContent}
           res.json({
             coachSummary: parsed.coachSummary,
             recommendedQuestions: parsed.recommendedQuestions,
-            modelUsed: 'gemini-4-argon',
+            modelUsed: 'gemini-3.8-flash',
           });
           return;
         }
@@ -1641,7 +1644,7 @@ ${resumeText || ''}
   }
 });
 
-app.post('/api/evaluate-rationale', async (req, res) => {
+app.post(['/api/evaluate-rationale', '/api/evaluate-check'], async (req, res) => {
   try {
     const { question, candidateAnswer, score, rationale, fitValueName } =
       req.body as {
