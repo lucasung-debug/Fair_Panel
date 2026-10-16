@@ -1,0 +1,295 @@
+import type { RiskLevel } from '../types.ts';
+
+export interface RiskCategoryConfig {
+  id: string;
+  label: string;
+  defaultLevel: RiskLevel;
+  lawRefs: string[];
+  keywords: string[];
+  reasonTemplate: string;
+  alternativeTemplate: string;
+}
+
+export const RISK_CATEGORIES: RiskCategoryConfig[] = [
+  {
+    id: 'marriage_dating',
+    label: 'Marriage & Dating Status',
+    defaultLevel: 'high',
+    lawRefs: ['recruit_4_3', 'gender_7', 'nhrc_2_3'],
+    keywords: [
+      '결혼 계획',
+      '결혼',
+      '미혼',
+      '기혼',
+      '애인',
+      '남자친구',
+      '여자친구',
+      '만나는 사람',
+      '연애',
+      '배우자',
+      'marriage plan',
+      'get married',
+      'married',
+      'single',
+      'boyfriend',
+      'girlfriend',
+      'dating anyone',
+      'seeing anyone',
+      'spouse',
+    ],
+    reasonTemplate:
+      'Asking about marital plans or dating status is unrelated to job performance and carries high discrimination risk and potential non-compliance with Fair Hiring Act Art. 4-3 and Equal Employment Act Art. 7.',
+    alternativeTemplate:
+      'What are your primary professional goals for the first 12 months in this role, and how do you plan to align with our team roadmap?',
+  },
+  {
+    id: 'pregnancy_childcare_plan',
+    label: 'Pregnancy, Childbirth & Childcare Plans',
+    defaultLevel: 'high',
+    lawRefs: ['gender_7', 'nhrc_2_3'],
+    keywords: [
+      '아이는 언제',
+      '아이 계획',
+      '출산 계획',
+      '출산',
+      '임신',
+      '자녀 계획',
+      '육아 계획',
+      '둘째 계획',
+      '아기 계획',
+      '낳을 생각',
+      'have children',
+      'having kids',
+      'pregnancy',
+      'pregnant',
+      'childbirth',
+      'maternity',
+      'start a family',
+      'plan to have a baby',
+    ],
+    reasonTemplate:
+      'Inquiring about pregnancy, childbirth, or family planning carries high gender discrimination risk and potential violation of Equal Employment Act Art. 7 and NHRC Act Art. 2(3).',
+    alternativeTemplate:
+      'How do you structure your workflow and handoff documentation to ensure predictable delivery across long-term project milestones?',
+  },
+  {
+    id: 'family_info',
+    label: 'Family Occupation, Education & Background',
+    defaultLevel: 'high',
+    lawRefs: ['recruit_4_3', 'nhrc_2_3'],
+    keywords: [
+      '부모님은 무슨 일',
+      '부모님 직업',
+      '부모님이나 배우자 직업',
+      '부모님이 다니는 회사',
+      '부모님',
+      '아버지',
+      '어머니',
+      '형제분들은 어느 학교',
+      '형제',
+      '자매',
+      '집안',
+      '가족 관계',
+      'what do your parents do',
+      'parents occupation',
+      'father do',
+      'mother do',
+      'siblings attend',
+      'siblings go to school',
+      'family background',
+    ],
+    reasonTemplate:
+      'Collecting information on parents’ or siblings’ occupations, education, or assets carries high discrimination risk and potential non-compliance with Fair Hiring Act Art. 4-3.',
+    alternativeTemplate:
+      'Please describe an experience where you managed access permissions and data boundaries while handling confidential HR records.',
+  },
+  {
+    id: 'origin_region',
+    label: 'Region of Origin & Hometown',
+    defaultLevel: 'high',
+    lawRefs: ['recruit_4_3', 'nhrc_2_3'],
+    keywords: [
+      '고향이 어디',
+      '고향',
+      '출신 지역',
+      '출신지역',
+      '어느 지역 출신',
+      '어디 출신',
+      '본적',
+      'where is your hometown',
+      'what is your hometown',
+      'where were you born',
+      'region of origin',
+    ],
+    reasonTemplate:
+      'Asking about a candidate’s hometown or region of origin is unrelated to job competency and carries regional discrimination risk under Fair Hiring Act Art. 4-3 and NHRC Act Art. 2(3).',
+    alternativeTemplate:
+      'Please share an example of how you adapted your communication style when collaborating with diverse on-site teams.',
+  },
+  {
+    id: 'body_appearance',
+    label: 'Physical Conditions & Appearance',
+    defaultLevel: 'high',
+    lawRefs: ['recruit_4_3', 'gender_7', 'nhrc_2_3'],
+    keywords: [
+      '키랑 몸무게',
+      '키와 몸무게',
+      '키나 체중',
+      '외모 관리',
+      '키가 몇',
+      '몸무게',
+      '체중',
+      '외모',
+      '용모',
+      'height and weight',
+      'how tall are you',
+      'how much do you weigh',
+      'physical appearance',
+    ],
+    reasonTemplate:
+      'Demanding physical traits such as height, weight, or appearance not essential for the job carries high discrimination risk under Fair Hiring Act Art. 4-3 and Equal Employment Act Art. 7.',
+    alternativeTemplate:
+      'Please describe how you guided candidates through the interview process with professionalism and clarity.',
+  },
+  {
+    id: 'assets',
+    label: 'Personal Assets & Housing Status',
+    defaultLevel: 'high',
+    lawRefs: ['recruit_4_3', 'nhrc_2_3'],
+    keywords: [
+      '자가예요',
+      '전세예요',
+      '월세예요',
+      '현재 자가 거주이신가요',
+      '본인 명의의 집',
+      '집은 자가',
+      '전세',
+      '재산',
+      '차 있으세요',
+      'own your home',
+      'own or rent',
+      'personal assets',
+      'net worth',
+      'do you own a house',
+    ],
+    reasonTemplate:
+      'Asking about home ownership (own vs. rent) or financial assets is prohibited under Fair Hiring Act Art. 4-3 and introduces socioeconomic discrimination risk.',
+    alternativeTemplate:
+      'Please describe an instance where you verified the numerical accuracy and supporting evidence of monthly settlement figures.',
+  },
+  {
+    id: 'age',
+    label: 'Age Bias & Generational Stereotypes',
+    defaultLevel: 'high',
+    lawRefs: ['age_4_4', 'nhrc_2_3'],
+    keywords: [
+      '나이가 좀 있으신데',
+      '나이가 많으신데',
+      '나이가 많은 지원자',
+      '젊은 팀장과 일할 때',
+      '젊은 팀장 밑에서',
+      '35세 이상은 부담',
+      '나이가 몇 살',
+      '몇 살',
+      '연세가',
+      '어린 상사',
+      'younger manager',
+      'younger team lead',
+      'for your age',
+      'how old are you',
+      'older than the team',
+    ],
+    reasonTemplate:
+      'Questioning adaptability based on age or working under a younger lead carries high age discrimination risk under Age Discrimination Act Art. 4-4 and NHRC Act Art. 2(3).',
+    alternativeTemplate:
+      'Please share a concrete example of how you resolved workflow differences when collaborating with teammates who had different working styles.',
+  },
+  {
+    id: 'gender_stereotype',
+    label: 'Gender Stereotypes',
+    defaultLevel: 'high',
+    lawRefs: ['gender_7', 'nhrc_2_3'],
+    keywords: [
+      '여자분이라 야근',
+      '여성분이라 야근',
+      '여자분은 지방 출장',
+      '남성에게 맡기는 게',
+      '여자라서',
+      '남자라서',
+      '여자분이라',
+      '남자분이라',
+      '여성분이라',
+      'as a woman',
+      'since you are a woman',
+      'female engineer',
+      'hard for a woman',
+    ],
+    reasonTemplate:
+      'Presuming overtime capacity, travel capability, or job suitability based on gender carries high gender discrimination risk under Equal Employment Act Art. 7.',
+    alternativeTemplate:
+      'Are you able to fulfill the regional business travel requirement of twice a month as specified in the job posting?',
+  },
+  {
+    id: 'religion_politics',
+    label: 'Religion & Political Views',
+    defaultLevel: 'caution',
+    lawRefs: ['nhrc_2_3'],
+    keywords: [
+      '종교 있으세요',
+      '종교 활동',
+      '종교가',
+      '교회',
+      '절에',
+      '정치 성향',
+      '지지하는 정당',
+      'what is your religion',
+      'political views',
+      'go to church',
+    ],
+    reasonTemplate:
+      'Questions about religion or political views probe personal beliefs unrelated to job competency and carry discrimination risk under NHRC Act Art. 2(3).',
+    alternativeTemplate:
+      'Please share an experience where you reached consensus with stakeholders holding differing professional opinions.',
+  },
+  {
+    id: 'job_irrelevant_privacy',
+    label: 'Job-Irrelevant Personal Privacy / Lifestyle',
+    defaultLevel: 'caution',
+    lawRefs: [],
+    keywords: [
+      '술은 어느 정도',
+      '술은 얼마나',
+      '술은 잘',
+      '술은 보통',
+      '술자리',
+      '회식 자리에서 술',
+      '주량이',
+      '주말에는 보통 누구와',
+      '주말에는 주로 누구와',
+      '주말에는 누구와',
+      '원래 성격이 조용한',
+      '취미가 뭐',
+      'how much do you drink',
+    ],
+    reasonTemplate:
+      'Inquiring into drinking habits, weekend companions, or personal personality stereotypes intrudes on job-irrelevant private lifestyle.',
+    alternativeTemplate:
+      'Please describe an instance where you collaborated effectively with departmental stakeholders despite differences in priorities.',
+  },
+  {
+    id: 'commute_residence_probe',
+    label: 'Commute & Residence Distance Probe',
+    defaultLevel: 'caution',
+    lawRefs: [],
+    keywords: [
+      '통근 시간이 얼마나',
+      '통근 시간이',
+      '현재 거주지에서 오피스',
+      'commute time',
+    ],
+    reasonTemplate:
+      'Asks about current residential location and commute duration rather than confirming neutral attendance schedules and core hours.',
+    alternativeTemplate:
+      'Are you able to comfortably fulfill our core office hours starting at 9:30 AM and our 4-day on-site schedule?',
+  },
+];

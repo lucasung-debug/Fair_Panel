@@ -1,0 +1,6 @@
+{
+  "name": "FairPanel",
+  "description": "HR-controlled fair interview kit generator, pre-ask discrimination risk coach, and structured rubric evaluation platform powered by Gemini 4 Argon.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

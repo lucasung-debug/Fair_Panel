@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+fairpanel.zip
+FairPanel_text_pack_20261016/
+FairPanel_*.md
+create_zip.py
+/data/
