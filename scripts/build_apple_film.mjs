@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { spawn, execSync } from 'child_process';
 
-const OUT_DIR = path.resolve('~/.gemini/antigravity/brain/01291726-7b06-4dee-bb09-09b0c76ecf66/scratch/apple_film');
+const OUT_DIR = path.resolve(process.env.FILM_OUT_DIR || path.join(os.tmpdir(), 'fairpanel_apple_film'));
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
@@ -998,8 +999,8 @@ function buildAudioTrack(scenes) {
   execSync(`ffmpeg -y -f concat -safe 0 -i "${concatTxt}" -c copy "${rawConcatMp4}"`, { stdio: 'ignore' });
 
   // Mix VO track with warm Apple BGM at 192kbps Stereo 48kHz AAC
-  const desktopFilm1 = '~/Desktop/FairPanel_Argon_Brand_Film.mp4';
-  const desktopFilm2 = '~/Desktop/FairPanel_Apple_Keynote_Film.mp4';
+  const desktopFilm1 = path.join(os.homedir(), 'Desktop', 'FairPanel_Argon_Brand_Film.mp4');
+  const desktopFilm2 = path.join(os.homedir(), 'Desktop', 'FairPanel_Apple_Keynote_Film.mp4');
   const repoFilm = path.resolve('fairpanel_demo.mp4');
 
   const mixCmd = [

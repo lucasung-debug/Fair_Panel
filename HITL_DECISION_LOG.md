@@ -78,7 +78,7 @@
      - **Law Citation Over-attachment (`src/data/riskKeywords.ts:221`)**: Attached `nhrc_2_3` to drinking/private lifestyle questions (`S11`, `S12`), whereas `expected_results_20.txt:76-87` requires `law_refs: []` (empty array).
      - **Kit Verification & Report Upgrade (`server.ts:561-630`, `1041-1063`)**: Step C/D in `/api/kit` and `/api/report` required authentic `gemini-4-argon` targeted repair and synthesis loops.
      - **Missing Golden Preset (`src/data/presets.ts`)**: `FP-Works / HR Operations Specialist (FP-C01)` from `sample_jd.txt` and `sample_resume.txt` needed to be wired into `presets.ts`.
-  3. **Subagent 3 (`154befb2-5863-449c-a639-a257264a8f8b` — Gemini 4 Argon SDK & Harness Optimizer)**: Identified model ID mismatch (`'gemini-3.1-flash-lite'` in `server.ts` vs official `'gemini-3.5-flash-lite'` in P0/P1) and designed `GEMINI.md`.
+  3. **Subagent 3 (`154befb2-5863-449c-a639-a257264a8f8b` — Gemini 4 Argon SDK & Harness Optimizer)**: Identified model ID mismatch (`'gemini-3.1-flash-lite'` in `server.ts` vs official `'gemini-3.5-flash-lite'` in P0/P1) and designed the project-root `GEMINI.md`.
 - **Joint Decision**: Fix all 6 critical gaps in Phase 1 Completion while simultaneously wiring the 4 role views, 3-badge UI, and dual 20-item benchmarks (`B01`–`B20` and `S01`–`S20`) in Phase 2.
 
 ---
@@ -88,7 +88,7 @@
   - *"There are 2 hours left. Reserve at least 30 minutes for debugging and time for submission processing—accelerate parallel execution immediately."*
 - **Agent Co-Reasoning & Action**:
   - Established a strict **60m Build + 30m Debug/Verify + 30m Cloud Run & Submission** schedule.
-  - Wrote `GEMINI.md` and updated `.aistudio/artifacts/brain/2b4432da-172a-4614-a202-70913c04d750/implementation_plan.md`.
+  - Wrote the project-root `GEMINI.md` and updated `.aistudio/artifacts/brain/2b4432da-172a-4614-a202-70913c04d750/implementation_plan.md`.
   - Dispatched parallel implementation subagents on strictly disjoint file boundaries:
     - **Worker 1 (Data, Laws, Deterministic Checks & Dual Benchmark Sets)**: `src/data/laws.ts`, `src/data/riskKeywords.ts`, `src/data/riskTestset.ts`, `src/data/demoTestset.ts`, `src/data/presets.ts`, `src/utils/checks.ts`.
     - **Worker 2 (Backend `gemini-4-argon` Agentic Loops & `/api/*` Endpoints)**: `server.ts`, `Dockerfile`.
